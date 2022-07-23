@@ -1,0 +1,7 @@
+{
+  "name": "form-mana-1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
