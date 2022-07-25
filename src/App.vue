@@ -52,6 +52,9 @@ export default defineComponent({
 .content-full {
   min-height: 100%;
 }
+ion-popover {
+    --width: 5vm;
+}
 ion-card {
   margin: unset !important;
   border: none !important;
