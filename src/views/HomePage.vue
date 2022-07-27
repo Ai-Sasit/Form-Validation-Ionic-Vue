@@ -60,7 +60,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-radio-group mode="md" color="tertiary" v-model="vv.gender.$model">
+          <ion-radio-group mode="ios" color="tertiary" v-model="vv.gender.$model">
             <ion-row>
               <ion-col class="ion-no-padding">
                 <ion-item lines="full" color="tertiary">
@@ -125,27 +125,27 @@
             <ion-input type="text" placeholder="AB1234567890" v-model="vv.peopleIdBack.$model"></ion-input>
           </ion-item>
 
-          <ion-item color="tertiary" lines="full" style=" --inner-padding-end: 0;">
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
             <ion-grid class="ion-no-padding ion-no-margin">
               <ion-row>
-                <ion-col size="0.8" class="ion-no-padding ion-no-margin">
+                <ion-col class="ion-no-padding my-thin-col ion-no-margin">
                   <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
-                    <ion-icon v-if="vv.currentAddress.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 64px;" />
-                    <ion-icon v-else-if="c_current" @click="openPopover($event, 'ที่อยู่ตามบัตรประชาชน')"
+                    <ion-icon v-if="vv.fixAddress.$model" name="checkmark-circle-outline"
+                      style="color: cornflowerblue; font-size: 1em" />
+                    <ion-icon v-else-if="c_fix" @click="openPopover($event, 'ที่อยู่ตามบัตรประชาชน')"
                       name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em;" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input">
                     <ion-text>
-                      <ion-label v-if="vv.currentAddress.$model" class="input">{{ vv.currentAddress.$model }}
-                      </ion-label>
-                      <ion-label v-else class="input">
-                        <b>ที่อยู่ตามบัตรประชาชน&nbsp;</b>
-                        <ion-text color="danger">*</ion-text>
-                      </ion-label>
+                      <b>ที่อยู่ตามบัตรประชาชน&nbsp;</b>
+                      <ion-text color="danger">*</ion-text>
+                      <ion-text v-if="vv.fixAddress.$model" color="medium">
+                        <ion-label class="input">{{ vv.fixAddress.$model }}
+                        </ion-label>
+                      </ion-text>
                     </ion-text>
                   </ion-item>
                 </ion-col>
@@ -153,27 +153,27 @@
             </ion-grid>
           </ion-item>
 
-          <ion-item color="tertiary" lines="full" style=" --inner-padding-end: 0;">
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
             <ion-grid class="ion-no-padding ion-no-margin">
               <ion-row>
-                <ion-col size="0.8" class="ion-no-padding ion-no-margin">
+                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
                   <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
                     <ion-icon v-if="vv.currentAddress.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 64px;" />
+                      style="color: cornflowerblue; font-size: 1em" />
                     <ion-icon v-else-if="c_current" @click="openPopover($event, 'ที่อยู่ปัจจุบัน')"
                       name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em;" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
                     <ion-text>
-                      <ion-label v-if="vv.currentAddress.$model" class="input">{{ vv.currentAddress.$model }}
-                      </ion-label>
-                      <ion-label v-else class="input">
-                        <b>ที่อยู่ปัจจุบัน&nbsp;</b>
-                        <ion-text color="danger">*</ion-text>
-                      </ion-label>
+                      <b>ที่อยู่ปัจจุบัน&nbsp;</b>
+                      <ion-text color="danger">*</ion-text>
+                      <ion-text v-if="vv.currentAddress.$model" color="medium">
+                        <ion-label class="input">{{ vv.currentAddress.$model }}
+                        </ion-label>
+                      </ion-text>
                     </ion-text>
                   </ion-item>
                 </ion-col>
@@ -199,27 +199,27 @@
             </ion-select>
           </ion-item>
 
-          <ion-item color="tertiary" lines="full" style=" --inner-padding-end: 0;">
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
             <ion-grid class="ion-no-padding ion-no-margin">
               <ion-row>
-                <ion-col size="0.8" class="ion-no-padding ion-no-margin">
+                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
                   <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
-                    <ion-icon v-if="vv.currentAddress.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 64px;" />
-                    <ion-icon v-else-if="c_current" @click="openPopover($event, 'เบอร์โทรศัพท์')"
+                    <ion-icon v-if="vv.phoneState.$model" name="checkmark-circle-outline"
+                      style="color: cornflowerblue; font-size: 1em" />
+                    <ion-icon v-else-if="c_phone" @click="openPopover($event, 'เบอร์โทรศัพท์')"
                       name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em;" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
                     <ion-text>
-                      <ion-label v-if="vv.currentAddress.$model" class="input">{{ vv.currentAddress.$model }}
-                      </ion-label>
-                      <ion-label v-else class="input">
-                        <b>เบอร์โทรศัพท์&nbsp;</b>
-                        <ion-text color="danger">*</ion-text>
-                      </ion-label>
+                      <b>เบอร์โทรศัพท์&nbsp;</b>
+                      <ion-text color="danger">*</ion-text>
+                      <ion-text v-if="vv.phoneState.$model" color="medium">
+                        <ion-label class="input">{{ vv.phoneState.$model }}
+                        </ion-label>
+                      </ion-text>
                     </ion-text>
                   </ion-item>
                 </ion-col>
@@ -321,7 +321,7 @@ export default defineComponent({
     IonRadioGroup,
     IonRadio,
     IonCheckbox,
-    IonPopover
+    IonPopover,
   },
   setup() {
     const c_prefix = ref(false);
@@ -399,7 +399,7 @@ export default defineComponent({
         mode: "ios",
       });
       modal.present();
-    }
+    };
 
     const onSubmit = () => {
       vv.value.$touch();
@@ -492,7 +492,7 @@ export default defineComponent({
 
       const { role } = await alert.onDidDismiss();
       console.log("onDidDismiss resolved with role", role);
-    }
+    },
   },
 });
 </script>
@@ -566,5 +566,11 @@ ion-popover.popover-bottom ion-datetime {
 
 .div-item-inner {
   --inner-padding-end: 0;
+}
+
+ion-col.my-thin-col {
+  flex: 0 0 4px;
+  padding: 0;
+  margin-right: 9px;
 }
 </style>
