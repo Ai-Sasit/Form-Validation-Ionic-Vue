@@ -87,7 +87,7 @@
               <ion-icon v-else-if="c_dob" @click="openPopover($event, 'วันเกิด')" name="alert-circle-outline"
                 style="color: red" />
               <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
-              วันเกิด&nbsp;<ion-text color="danger">*</ion-text> 
+              วันเกิด&nbsp;<ion-text color="danger">*</ion-text>
             </ion-label>
             <ion-note v-if="!vv.dob.$model" slot="end">วัน/เดือน/ปี</ion-note>
             <ion-note v-else slot="end">{{ vv.dob.$model }}</ion-note>
@@ -98,34 +98,6 @@
             <ion-datetime style="background: white" locale="th-TH" @ionChange="formatDate1($event)"
               display-format="YYYY-MM-DD"></ion-datetime>
           </ion-popover>
-
-          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
-            <ion-grid class="ion-no-padding ion-no-margin">
-              <ion-row>
-                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
-                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
-                    <ion-icon v-if="vv.dob.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 1em" />
-                    <ion-icon v-else-if="c_dob" @click="openPopover($event, 'วันเกิด')"
-                      name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
-                  </ion-item>
-                </ion-col>
-                <ion-col style="width: 0.5vw;">
-                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
-                    <ion-text style="width: 95%;">
-                      <b>ที่อยู่ปัจจุบัน&nbsp;</b>
-                      <ion-text color="danger">*</ion-text>
-                      <ion-text v-if="vv.currentAddress.$model" color="medium">
-                        <ion-label class="input">{{ vv.currentAddress.$model }}
-                        </ion-label>
-                      </ion-text>
-                    </ion-text>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
 
           <ion-item color="tertiary">
             <ion-label>
@@ -155,32 +127,18 @@
             <ion-input type="text" placeholder="AB1234567890" v-model="vv.peopleIdBack.$model"></ion-input>
           </ion-item>
 
-          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
-            <ion-grid class="ion-no-padding ion-no-margin">
-              <ion-row>
-                <ion-col class="ion-no-padding my-thin-col ion-no-margin">
-                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
-                    <ion-icon v-if="vv.fixAddress.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 1em" />
-                    <ion-icon v-else-if="c_fix" @click="openPopover($event, 'ที่อยู่ตามบัตรประชาชน')"
-                      name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
-                  </ion-item>
-                </ion-col>
-                <ion-col style="width: 0.5vw;">
-                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input">
-                    <ion-text style="width: 95%;">
-                      <b>ที่อยู่ตามบัตรประชาชน&nbsp;</b>
-                      <ion-text color="danger">*</ion-text>
-                      <ion-text v-if="vv.fixAddress.$model" color="medium">
-                        <ion-label class="input fixedLabel">{{ vv.fixAddress.$model }}
-                        </ion-label>
-                      </ion-text>
-                    </ion-text>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+          <ion-item color="tertiary" lines="full" button @click="fixPlace($event)">
+            <ion-label>
+              <ion-icon v-if="vv.fixAddress.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
+              <ion-icon v-else-if="c_fix" name="alert-circle-outline" style="color: red" />
+              <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
+              <b>&nbsp;ที่อยู่ตามบัตรประชาชน&nbsp;</b>
+              <ion-text color="danger">*</ion-text>
+              <ion-text v-if="vv.fixAddress.$model" color="medium">
+                <ion-label class="input fixedLabel">{{ vv.fixAddress.$model }}
+                </ion-label>
+              </ion-text>
+            </ion-label>
           </ion-item>
 
           <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
@@ -199,7 +157,7 @@
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
                     <ion-text style="width: 95%;">
                       <b>ที่อยู่ปัจจุบัน&nbsp;</b>
-                      <ion-text color="danger">*</ion-text>
+                      <ion-text color="danger" style="font-weight: 800;">*</ion-text>
                       <ion-text v-if="vv.currentAddress.$model" color="medium">
                         <ion-label class="input">{{ vv.currentAddress.$model }}
                         </ion-label>
@@ -245,7 +203,7 @@
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
                     <ion-text>
                       <b>เบอร์โทรศัพท์&nbsp;</b>
-                      <ion-text color="danger">*</ion-text>
+                      <ion-text color="danger" style="font-weight: 800;">*</ion-text>
                       <ion-text v-if="vv.phoneState.$model" color="medium">
                         <ion-label class="input">{{ vv.phoneState.$model }}
                         </ion-label>
@@ -256,7 +214,7 @@
               </ion-row>
             </ion-grid>
           </ion-item>
-          
+
 
           <ion-item color="tertiary">
             <ion-label>
@@ -328,7 +286,7 @@ import Popover from "../components/Popover.vue";
 import Modal from "../components/Modal.vue";
 import moment from "moment";
 import { currentAddressState, fixAddressState, phoneState } from "../store";
-
+import { useRouter } from "vue-router";
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -372,6 +330,7 @@ export default defineComponent({
     const { currentAddress } = currentAddressState();
     const { fixAddress } = fixAddressState();
     const { phone } = phoneState();
+    const router = useRouter();
 
     const data_form = reactive({
       prefix: "",
@@ -494,12 +453,23 @@ export default defineComponent({
       c_current,
       c_phone,
       vv,
+      router,
       onSubmit,
     };
   },
   methods: {
     formatDate1(event: any) {
       this.vv.dob.$model = moment(event.target.value).format("DD/MM/YYYY");
+    },
+    fixPlace(event: any) {
+      if (this.c_fix) {
+        this.openPopover(event, 'ที่อยู่ตามบัตรประชาชน').then(() => {
+          this.router.push("/form-input");
+        })
+      } else {
+        this.router.push("/form-input");
+      }
+
     },
     async openPopover(ev: any, message: string) {
       const popover = await popoverController.create({
@@ -510,6 +480,10 @@ export default defineComponent({
         mode: "ios",
       });
       await popover.present();
+      await popover.onDidDismiss();
+      if (message === "ที่อยู่ตามบัตรประชาชน") {
+        this.router.push("/form-input");
+      }
     },
     async errorAlert(text: string) {
       const alert = await alertController.create({
@@ -520,9 +494,7 @@ export default defineComponent({
         mode: "ios",
       });
       await alert.present();
-
-      const { role } = await alert.onDidDismiss();
-      console.log("onDidDismiss resolved with role", role);
+      await alert.onDidDismiss();
     },
   },
 });

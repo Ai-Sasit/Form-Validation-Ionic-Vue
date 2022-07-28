@@ -72,16 +72,13 @@ import {
     IonIcon,
     IonButton,
     modalController,
-    alertController,
     popoverController,
 } from "@ionic/vue";
 import { defineComponent, reactive, ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required, minValue, sameAs } from "@vuelidate/validators";
+import { required} from "@vuelidate/validators";
 import Popover from "../components/Popover.vue";
 import Modal from "../components/Modal.vue";
-import moment from "moment";
-import { currentAddressState, fixAddressState, phoneState } from "../store";
 
 export default defineComponent({
     name: "HomePage",
@@ -162,20 +159,6 @@ export default defineComponent({
 
         const vv = useVuelidate(rules, data_form);
 
-        const warnAlert = async (text: string) => {
-            const alert = await alertController.create({
-                cssClass: "error-alert",
-                header: "เกิดข้อผิดพลาด",
-                message: text,
-                buttons: ["ตกลง"],
-                mode: "ios",
-            });
-            await alert.present();
-
-            const { role } = await alert.onDidDismiss();
-            console.log("onDidDismiss resolved with role", role);
-        };
-
         const openModal = async () => {
             const modal = await modalController.create({
                 component: Modal,
@@ -227,19 +210,6 @@ export default defineComponent({
                 mode: "ios",
             });
             await popover.present();
-        },
-        async errorAlert(text: string) {
-            const alert = await alertController.create({
-                cssClass: "error-alert",
-                header: "เกิดข้อผิดพลาด",
-                message: text,
-                buttons: ["ตกลง"],
-                mode: "ios",
-            });
-            await alert.present();
-
-            const { role } = await alert.onDidDismiss();
-            console.log("onDidDismiss resolved with role", role);
         },
     },
 });
