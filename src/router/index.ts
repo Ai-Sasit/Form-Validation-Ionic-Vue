@@ -27,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Form-input-tel',
     component: () => import('../views/Form-input-tel.vue')
   },
+  {
+    path: '/form-v1',
+    name: 'Form-v1',
+    component: () => import('../views/Form-v1.vue')
+  },
 ]
 
 const router = createRouter({
