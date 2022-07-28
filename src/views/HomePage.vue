@@ -80,22 +80,52 @@
               </ion-col>
             </ion-row>
           </ion-radio-group>
+
           <ion-item button color="tertiary" id="open-date-input" lines="full">
             <ion-label style="font-size: 16px">
               <ion-icon v-if="vv.dob.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
               <ion-icon v-else-if="c_dob" @click="openPopover($event, 'วันเกิด')" name="alert-circle-outline"
                 style="color: red" />
               <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
-              วันเกิด&nbsp;<ion-text color="danger">*</ion-text>
+              วันเกิด&nbsp;<ion-text color="danger">*</ion-text> 
             </ion-label>
             <ion-note v-if="!vv.dob.$model" slot="end">วัน/เดือน/ปี</ion-note>
             <ion-note v-else slot="end">{{ vv.dob.$model }}</ion-note>
           </ion-item>
+
           <ion-popover trigger="open-date-input" mode="ios" size="cover" :arrow="false" id="popover-bottom"
             :show-backdrop="true">
             <ion-datetime style="background: white" locale="th-TH" @ionChange="formatDate1($event)"
               display-format="YYYY-MM-DD"></ion-datetime>
           </ion-popover>
+
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
+            <ion-grid class="ion-no-padding ion-no-margin">
+              <ion-row>
+                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
+                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
+                    <ion-icon v-if="vv.dob.$model" name="checkmark-circle-outline"
+                      style="color: cornflowerblue; font-size: 1em" />
+                    <ion-icon v-else-if="c_dob" @click="openPopover($event, 'วันเกิด')"
+                      name="alert-circle-outline" style="color: red; font-size: 1em" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
+                  </ion-item>
+                </ion-col>
+                <ion-col style="width: 0.5vw;">
+                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
+                    <ion-text style="width: 95%;">
+                      <b>ที่อยู่ปัจจุบัน&nbsp;</b>
+                      <ion-text color="danger">*</ion-text>
+                      <ion-text v-if="vv.currentAddress.$model" color="medium">
+                        <ion-label class="input">{{ vv.currentAddress.$model }}
+                        </ion-label>
+                      </ion-text>
+                    </ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
 
           <ion-item color="tertiary">
             <ion-label>
