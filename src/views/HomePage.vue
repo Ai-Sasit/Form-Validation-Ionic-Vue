@@ -137,13 +137,13 @@
                     <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
-                <ion-col>
+                <ion-col style="width: 0.5vw;">
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input">
-                    <ion-text>
+                    <ion-text style="width: 95%;">
                       <b>ที่อยู่ตามบัตรประชาชน&nbsp;</b>
                       <ion-text color="danger">*</ion-text>
                       <ion-text v-if="vv.fixAddress.$model" color="medium">
-                        <ion-label class="input">{{ vv.fixAddress.$model }}
+                        <ion-label class="input fixedLabel">{{ vv.fixAddress.$model }}
                         </ion-label>
                       </ion-text>
                     </ion-text>
@@ -165,9 +165,9 @@
                     <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
-                <ion-col>
+                <ion-col style="width: 0.5vw;">
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
-                    <ion-text>
+                    <ion-text style="width: 95%;">
                       <b>ที่อยู่ปัจจุบัน&nbsp;</b>
                       <ion-text color="danger">*</ion-text>
                       <ion-text v-if="vv.currentAddress.$model" color="medium">
@@ -211,7 +211,7 @@
                     <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
                 </ion-col>
-                <ion-col>
+                <ion-col style="width: 0.5vw;">
                   <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
                     <ion-text>
                       <b>เบอร์โทรศัพท์&nbsp;</b>
