@@ -1,5 +1,5 @@
 <template>
-  <ion-content class="ion-padding" style="background-color: ;#fff">กรุณาระบุ {{text}} ให้ถูกต้อง</ion-content>
+  <ion-content class="ion-padding" >กรุณาระบุ {{text}} ให้ถูกต้อง</ion-content>
 </template>
 
 <script lang="ts">

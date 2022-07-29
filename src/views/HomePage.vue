@@ -127,7 +127,7 @@
             <ion-input type="text" placeholder="AB1234567890" v-model="vv.peopleIdBack.$model"></ion-input>
           </ion-item>
 
-          <ion-item color="tertiary" lines="full" button @click="fixPlace($event)">
+          <ion-item color="tertiary" lines="full" button @click="fixPlace()">
             <ion-label>
               <ion-icon v-if="vv.fixAddress.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
               <ion-icon v-else-if="c_fix" name="alert-circle-outline" style="color: red" />
@@ -461,9 +461,9 @@ export default defineComponent({
     formatDate1(event: any) {
       this.vv.dob.$model = moment(event.target.value).format("DD/MM/YYYY");
     },
-    fixPlace(event: any) {
+    fixPlace() {
       if (this.c_fix) {
-        this.openPopover(event, 'ที่อยู่ตามบัตรประชาชน').then(() => {
+        this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน',"ไปยังหน้ากรอกข้อมูล").then(() => {
           this.router.push("/form-input");
         })
       } else {
@@ -481,20 +481,21 @@ export default defineComponent({
       });
       await popover.present();
       await popover.onDidDismiss();
-      if (message === "ที่อยู่ตามบัตรประชาชน") {
-        this.router.push("/form-input");
-      }
+      
     },
-    async errorAlert(text: string) {
+    async errorAlert(text: string, btn: string) {
       const alert = await alertController.create({
         cssClass: "error-alert",
         header: "เกิดข้อผิดพลาด",
         message: text,
-        buttons: ["ตกลง"],
+        buttons: [btn],
         mode: "ios",
       });
       await alert.present();
       await alert.onDidDismiss();
+      if (text === "ที่อยู่ตามบัตรประชาชน") {
+        this.router.push("/form-input");
+      }
     },
   },
 });

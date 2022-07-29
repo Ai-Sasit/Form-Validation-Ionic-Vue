@@ -54,6 +54,7 @@ export default defineComponent({
 }
 ion-popover {
     --width: 5vm;
+    --height: 5vm;
 }
 ion-card {
   margin: unset !important;
