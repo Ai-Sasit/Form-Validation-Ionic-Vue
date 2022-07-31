@@ -26,7 +26,8 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.address.$model ? correctunderline : c_address ? wongunderline : ''">
             <ion-input
               type="text"
               placeholder="เช่น หมู่บ้านแสนสุข 144/1 หมู่ 1 ถนนริมบึง"
@@ -58,7 +59,8 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.subdistrict.$model ? correctunderline : c_subdistrict ? wongunderline : ''">
             <ion-input
               type="text"
               placeholder="เช่น บางพระ"
@@ -89,7 +91,8 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.district.$model ? correctunderline : c_district ? wongunderline : ''">
             <ion-input
               type="text"
               placeholder="เช่น ศรีราชา"
@@ -120,7 +123,8 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.province.$model ? correctunderline : c_province ? wongunderline : ''">
             <ion-input
               type="text"
               placeholder="เช่น ชลบุรี"
@@ -151,7 +155,8 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.postcode.$model ? correctunderline : c_postcode ? wongunderline : ''">
             <ion-input
               type="text"
               placeholder="เช่น 20110"
@@ -221,6 +226,51 @@ export default defineComponent({
     IonText,
     IonFooter,
   },
+    data() {
+        return {
+            correctStyleBottom: {
+                "border-bottom": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+                "margin-bottom": "1px ",
+            },
+            wongStyleBottom: {
+                "border-bottom": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctStyleTop: {
+                "border-top": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+            },
+            wongStyleTop: {
+                "border-top": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctunderline: {
+                "border-bottom": "2px solid cornflowerblue",
+            },
+            wongunderline: {
+                "border-bottom": "2px solid red",
+            },
+            wongshake: {
+                "animation": "shake 0.5s",
+                "animation-iteration-count": "1",
+                "border-top": "1px solid red",
+                "border-bottom": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctshake: {
+                "border-top": "1px solid cornflowerblue",
+                "border-bottom": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+            }
+        }
+    },
   setup() {
     const c_address = ref(false);
     const c_subdistrict = ref(false);

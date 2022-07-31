@@ -32,6 +32,26 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Form-v1',
     component: () => import('../views/Form-v1.vue')
   },
+  {
+    path: '/style-address',
+    name: 'Style-address',
+    component: () => import('../views/style-address.vue')
+  },
+  {
+    path: '/style-current',
+    name: 'Style-current',
+    component: () => import('../views/style-current.vue')
+  },
+  {
+    path: '/style-form',
+    name: 'Style-form',
+    component: () => import('../views/style-form.vue')
+  },
+  {
+    path: '/style-tel',
+    name: 'Style-tel',
+    component: () => import('../views/style-tel.vue')
+  },
 ]
 
 const router = createRouter({

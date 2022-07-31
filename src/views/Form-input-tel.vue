@@ -31,7 +31,9 @@
               <ion-text color="danger">*</ion-text>
             </p>
           </ion-item>
-          <ion-item color="tertiary" lines="full">
+          <ion-item color="tertiary" lines="full"
+          :style="vv.phone.$model ? correctunderline : c_phone ? wongunderline : ''"
+          style="bottom: 0.5rem;">
             <ion-input
               type="tel"
               placeholder="กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง"
@@ -90,6 +92,51 @@ export default defineComponent({
     IonFooter,
     IonText,
   },
+  data() {
+        return {
+            correctStyleBottom: {
+                "border-bottom": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+                "margin-bottom": "1px ",
+            },
+            wongStyleBottom: {
+                "border-bottom": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctStyleTop: {
+                "border-top": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+            },
+            wongStyleTop: {
+                "border-top": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctunderline: {
+                "border-bottom": "2px solid cornflowerblue",
+            },
+            wongunderline: {
+                "border-bottom": "2px solid red",
+            },
+            wongshake: {
+                "animation": "shake 0.5s",
+                "animation-iteration-count": "1",
+                "border-top": "1px solid red",
+                "border-bottom": "1px solid red",
+                "border-left": "1px solid red",
+                "border-right": "1px solid red",
+            },
+            correctshake: {
+                "border-top": "1px solid cornflowerblue",
+                "border-bottom": "1px solid cornflowerblue",
+                "border-left": "1px solid cornflowerblue",
+                "border-right": "1px solid cornflowerblue",
+            }
+        }
+    },
   setup() {
     const router = useRouter();
     const c_phone = ref(false);
