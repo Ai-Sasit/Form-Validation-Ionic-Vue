@@ -169,6 +169,39 @@
             </ion-grid>
           </ion-item>
 
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
+            <ion-grid class="ion-no-padding ion-no-margin">
+              <ion-row>
+                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
+                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
+                    <ion-icon v-if="vv.currentAddress.$model" name="checkmark-circle-outline"
+                      style="color: cornflowerblue; font-size: 1em" />
+                    <ion-icon v-else-if="c_current" @click="openPopover($event, 'ที่อยู่ปัจจุบัน')"
+                      name="alert-circle-outline" style="color: red; font-size: 1em" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
+                  </ion-item>
+                </ion-col>
+                <ion-col style="width: 0.5vw;">
+                  <ion-item class="ion-no-padding ion-no-margin" color="tertiary">
+                    <ion-text style="width: 95%;">
+                      <b>&nbsp;อาชีพ&nbsp;</b>
+                      <ion-text color="danger" style="font-weight: 800;">*</ion-text>
+                      <ion-text v-if="vv.currentAddress.$model" color="medium">
+                        <ion-label class="input">{{ vv.currentAddress.$model }}
+                        </ion-label>
+                      </ion-text>
+                    </ion-text>
+                    <ion-select class="ion-no-padding ion-padding-end ion-select-full" okText="ตกลง" cancelText="ยกเลิก"
+                      interface="action-sheet" placeholder="กรุณาระบุอาชีพ" v-model="vv.job.$model">
+                      <ion-select-option value="a">รับราชการ</ion-select-option>
+                      <ion-select-option value="b">รับจ้างทั่วไป</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+
           <ion-item color="tertiary">
             <ion-label>
               <ion-icon v-if="vv.job.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
@@ -186,35 +219,6 @@
               <ion-select-option value="b">รับจ้างทั่วไป</ion-select-option>
             </ion-select>
           </ion-item>
-
-          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
-            <ion-grid class="ion-no-padding ion-no-margin">
-              <ion-row>
-                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
-                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
-                    <ion-icon v-if="vv.phoneState.$model" name="checkmark-circle-outline"
-                      style="color: cornflowerblue; font-size: 1em" />
-                    <ion-icon v-else-if="c_phone" @click="openPopover($event, 'เบอร์โทรศัพท์')"
-                      name="alert-circle-outline" style="color: red; font-size: 1em" />
-                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
-                  </ion-item>
-                </ion-col>
-                <ion-col style="width: 0.5vw;">
-                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
-                    <ion-text>
-                      <b>เบอร์โทรศัพท์&nbsp;</b>
-                      <ion-text color="danger" style="font-weight: 800;">*</ion-text>
-                      <ion-text v-if="vv.phoneState.$model" color="medium">
-                        <ion-label class="input">{{ vv.phoneState.$model }}
-                        </ion-label>
-                      </ion-text>
-                    </ion-text>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-item>
-
 
           <ion-item color="tertiary">
             <ion-label>
@@ -463,7 +467,7 @@ export default defineComponent({
     },
     fixPlace() {
       if (this.c_fix) {
-        this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน',"ไปยังหน้ากรอกข้อมูล").then(() => {
+        this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน', "ไปยังหน้ากรอกข้อมูล").then(() => {
           this.router.push("/form-input");
         })
       } else {
@@ -481,7 +485,7 @@ export default defineComponent({
       });
       await popover.present();
       await popover.onDidDismiss();
-      
+
     },
     async errorAlert(text: string, btn: string) {
       const alert = await alertController.create({
