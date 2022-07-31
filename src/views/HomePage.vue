@@ -176,7 +176,7 @@
                   <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
                     <ion-icon v-if="vv.currentAddress.$model" name="checkmark-circle-outline"
                       style="color: cornflowerblue; font-size: 1em" />
-                    <ion-icon v-else-if="c_current" @click="openPopover($event, 'ที่อยู่ปัจจุบัน')"
+                    <ion-icon v-else-if="c_current" @click="openPopover($event, 'อาชีพ')"
                       name="alert-circle-outline" style="color: red; font-size: 1em" />
                     <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
                   </ion-item>
@@ -191,7 +191,7 @@
                         </ion-label>
                       </ion-text>
                     </ion-text>
-                    <ion-select class="ion-no-padding ion-padding-end ion-select-full" okText="ตกลง" cancelText="ยกเลิก"
+                    <ion-select class="ion-no-padding ion-padding-end ion-select-full" slot="end" okText="ตกลง" cancelText="ยกเลิก"
                       interface="action-sheet" placeholder="กรุณาระบุอาชีพ" v-model="vv.job.$model">
                       <ion-select-option value="a">รับราชการ</ion-select-option>
                       <ion-select-option value="b">รับจ้างทั่วไป</ion-select-option>
@@ -202,22 +202,32 @@
             </ion-grid>
           </ion-item>
 
-          <ion-item color="tertiary">
-            <ion-label>
-              <ion-icon v-if="vv.job.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
-              <ion-icon v-else-if="c_job" @click="openPopover($event, 'อาชีพ')" name="alert-circle-outline"
-                style="color: red" />
-              <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
-              <b>&nbsp;อาชีพ&nbsp;</b>
-              <ion-text color="danger">*</ion-text>
-            </ion-label>
-          </ion-item>
-          <ion-item color="tertiary" lines="full">
-            <ion-select class="ion-no-padding ion-padding-end ion-select-full" okText="ตกลง" cancelText="ยกเลิก"
-              interface="action-sheet" placeholder="กรุณาระบุอาชีพ" v-model="vv.job.$model">
-              <ion-select-option value="a">รับราชการ</ion-select-option>
-              <ion-select-option value="b">รับจ้างทั่วไป</ion-select-option>
-            </ion-select>
+          <ion-item color="tertiary" lines="full" style="--inner-padding-end: 0">
+            <ion-grid class="ion-no-padding ion-no-margin">
+              <ion-row>
+                <ion-col class="ion-no-padding ion-no-margin my-thin-col">
+                  <ion-item color="tertiary" class="div-item-inner ion-no-padding ion-no-margin">
+                    <ion-icon v-if="vv.phoneState.$model" name="checkmark-circle-outline"
+                      style="color: cornflowerblue; font-size: 1em" />
+                    <ion-icon v-else-if="c_phone" @click="openPopover($event, 'เบอร์โทรศัพท์')"
+                      name="alert-circle-outline" style="color: red; font-size: 1em" />
+                    <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue; font-size: 1em" />
+                  </ion-item>
+                </ion-col>
+                <ion-col style="width: 0.5vw;">
+                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
+                    <ion-text>
+                      <b>เบอร์โทรศัพท์&nbsp;</b>
+                      <ion-text color="danger" style="font-weight: 800;">*</ion-text>
+                      <ion-text v-if="vv.phoneState.$model" color="medium">
+                        <ion-label class="input">{{ vv.phoneState.$model }}
+                        </ion-label>
+                      </ion-text>
+                    </ion-text>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-item>
 
           <ion-item color="tertiary">
