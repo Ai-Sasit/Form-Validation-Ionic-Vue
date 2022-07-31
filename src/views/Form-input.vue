@@ -26,8 +26,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.address.$model ? correctunderline : c_address ? wongunderline : ''">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
               placeholder="เช่น หมู่บ้านแสนสุข 144/1 หมู่ 1 ถนนริมบึง"
@@ -59,8 +58,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.subdistrict.$model ? correctunderline : c_subdistrict ? wongunderline : ''">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
               placeholder="เช่น บางพระ"
@@ -91,8 +89,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.district.$model ? correctunderline : c_district ? wongunderline : ''">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
               placeholder="เช่น ศรีราชา"
@@ -123,8 +120,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.province.$model ? correctunderline : c_province ? wongunderline : ''">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
               placeholder="เช่น ชลบุรี"
@@ -155,8 +151,7 @@
               <ion-text color="danger">*</ion-text>
             </ion-label>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.postcode.$model ? correctunderline : c_postcode ? wongunderline : ''">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
               placeholder="เช่น 20110"

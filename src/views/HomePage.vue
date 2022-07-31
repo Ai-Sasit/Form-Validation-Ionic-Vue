@@ -476,7 +476,7 @@ export default defineComponent({
       this.vv.dob.$model = moment(event.target.value).format("DD/MM/YYYY");
     },
     fixPlace() {
-      if (this.c_fix) {
+      if (this.c_fix && this.vv.fixAddress.$model === "") {
         this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน', "ไปยังหน้ากรอกข้อมูล").then(() => {
           this.router.push("/form-input");
         })

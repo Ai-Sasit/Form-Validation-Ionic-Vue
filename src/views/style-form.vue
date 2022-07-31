@@ -162,7 +162,7 @@
                   </ion-item>
                 </ion-col>
                 <ion-col style="width: 0.5vw;">
-                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/current-address">
+                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/style-current">
                     <ion-text style="width: 95%;">
                       <b>ที่อยู่ปัจจุบัน&nbsp;</b>
                       <ion-text color="danger" style="font-weight: 800;">*</ion-text>
@@ -221,7 +221,7 @@
                   </ion-item>
                 </ion-col>
                 <ion-col style="width: 0.5vw;">
-                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/form-input-tel">
+                  <ion-item class="ion-no-padding ion-no-margin" button color="tertiary" router-link="/style-tel">
                     <ion-text>
                       <b>เบอร์โทรศัพท์&nbsp;</b>
                       <ion-text color="danger" style="font-weight: 800;">*</ion-text>
@@ -529,12 +529,12 @@ export default defineComponent({
       this.vv.dob.$model = moment(event.target.value).format("DD/MM/YYYY");
     },
     fixPlace() {
-      if (this.c_fix) {
+      if (this.c_fix && this.vv.fixAddress.$model === "") {
         this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน', "ไปยังหน้ากรอกข้อมูล").then(() => {
-          this.router.push("/form-input");
+          this.router.push("/style-address");
         })
       } else {
-        this.router.push("/form-input");
+        this.router.push("/style-address");
       }
 
     },
