@@ -191,7 +191,7 @@
                         </ion-label>
                       </ion-text>
                     </ion-text>
-                    <ion-select class="ion-no-padding ion-padding-end ion-select-full" slot="end" okText="ตกลง" cancelText="ยกเลิก"
+                    <ion-select class="ion-no-padding ion-padding-end ion-select-full" okText="ตกลง" cancelText="ยกเลิก"
                       interface="action-sheet" placeholder="กรุณาระบุอาชีพ" v-model="vv.job.$model">
                       <ion-select-option value="a">รับราชการ</ion-select-option>
                       <ion-select-option value="b">รับจ้างทั่วไป</ion-select-option>
