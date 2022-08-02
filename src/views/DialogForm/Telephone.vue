@@ -31,9 +31,7 @@
               <ion-text color="danger">*</ion-text>
             </p>
           </ion-item>
-          <ion-item color="tertiary" lines="full"
-          :style="vv.phone.$model ? correctunderline : c_phone ? wongunderline : ''"
-          style="bottom: 0.5rem;">
+          <ion-item color="tertiary" lines="full">
             <ion-input
               type="tel"
               placeholder="กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง"
@@ -74,7 +72,7 @@ import { useRouter } from "vue-router";
 import { defineComponent, reactive, ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import Popover from "../components/Popover.vue";
+import Popover from "@/components/Popover.vue";
 import { phoneState } from "@/store";
 
 export default defineComponent({

@@ -5,53 +5,48 @@ import HomePage from '../views/HomePage.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/form-tooltip'
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
+    path: '/form-tooltip',
+    name: 'FormTooltip',
+    component: () => import('../views/FormPopover.vue') 
   },
   {
     path: '/current-address',
     name: 'Current-address',
-    component: () => import('../views/Current-address.vue')
+    component: () => import('../views/CurrentAddress.vue')
   },
   {
-    path: '/form-input',
+    path: '/fix-address',
     name: 'Form-Input',
-    component: () => import('../views/Form-input.vue')
+    component: () => import('../views/FixAddress.vue')
   },
   {
-    path: '/form-input-tel',
+    path: '/telephone',
     name: 'Form-input-tel',
-    component: () => import('../views/Form-input-tel.vue')
+    component: () => import('../views/Telephone.vue')
   },
   {
-    path: '/form-v1',
-    name: 'Form-v1',
-    component: () => import('../views/Form-v1.vue')
+    path: '/form-dialog',
+    name: 'Form-dialog',
+    component: () => import('../views/DialogForm/FormDialog.vue')
   },
   {
-    path: '/style-address',
-    name: 'Style-address',
-    component: () => import('../views/style-address.vue')
+    path: '/fix-address-dialog',
+    name: 'dialog-fix-address',
+    component: () => import('../views/DialogForm/FixAddress.vue')
   },
   {
-    path: '/style-current',
-    name: 'Style-current',
-    component: () => import('../views/style-current.vue')
+    path: '/telephone-dialog',
+    name: 'dialog-telephone',
+    component: () => import('../views/DialogForm/Telephone.vue')
   },
   {
-    path: '/style-form',
-    name: 'Style-form',
-    component: () => import('../views/style-form.vue')
-  },
-  {
-    path: '/style-tel',
-    name: 'Style-tel',
-    component: () => import('../views/style-tel.vue')
-  },
+    path: '/current-address-dialog',
+    name: 'dialog-current-address',
+    component: () => import('../views/DialogForm/CurrentAddress.vue')
+  }
 ]
 
 const router = createRouter({
