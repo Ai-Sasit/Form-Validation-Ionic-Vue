@@ -283,11 +283,6 @@ export default defineComponent({
     IonCheckbox,
     IonPopover,
   },
-  data() {
-    return {
-      hideDialog: false,
-    }
-  },
   setup() {
     const c_prefix = ref(false);
     const c_surname = ref(false);
@@ -302,6 +297,8 @@ export default defineComponent({
     const c_current = ref(false);
     const c_phone = ref(false);
     const c_error = ref(false);
+
+    const hideDialog = ref(false);
 
     const { currentAddress } = currentAddressState();
     const { fixAddress } = fixAddressState();
@@ -401,9 +398,8 @@ export default defineComponent({
           ? (c_phone.value = true)
           : (c_phone.value = false);
         c_error.value = true;
-        console.log("Jeesse");
+        hideDialog.value = false;
       } else {
-        console.log("Jeee");
         openModal();
       }
     };
@@ -424,7 +420,8 @@ export default defineComponent({
       vv,
       router,
       onSubmit,
-      currentAddress
+      currentAddress,
+      hideDialog
     };
   },
   updated(){
@@ -492,9 +489,6 @@ export default defineComponent({
         await alert.present();
         const data = await alert.onDidDismiss();
         data.data.values[0] ? this.hideDialog = true : this.hideDialog = false;
-        if (text === "ที่อยู่ตามบัตรประชาชน") {
-          this.router.push("/form-input");
-        }
       }
 
     },
