@@ -84,8 +84,8 @@
           <ion-item button color="tertiary" id="open-date-input" lines="full">
             <ion-label style="font-size: 16px">
               <ion-icon v-if="vv.dob.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
-              <ion-icon v-else-if="c_dob" @click="errorAlert('กรุณาระบุวันเกิดให้ถูกต้อง', 'ตกลง')"
-                name="alert-circle-outline" style="color: red" />
+              <ion-icon v-else-if="c_dob" @click="errorAlert('กรุณาระบุวันเกิดให้ถูกต้อง', 'ตกลง')" name="alert-circle-outline"
+                style="color: red" />
               <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
               วันเกิด&nbsp;<ion-text color="danger">*</ion-text>
             </ion-label>
