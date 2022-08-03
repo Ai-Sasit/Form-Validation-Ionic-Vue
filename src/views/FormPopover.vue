@@ -381,20 +381,6 @@ export default defineComponent({
 
     const vv = useVuelidate(rules, data_form);
 
-    const warnAlert = async (text: string) => {
-      const alert = await alertController.create({
-        cssClass: "error-alert",
-        header: "เกิดข้อผิดพลาด",
-        message: text,
-        buttons: ["ตกลง"],
-        mode: "ios",
-      });
-      await alert.present();
-
-      const { role } = await alert.onDidDismiss();
-      console.log("onDidDismiss resolved with role", role);
-    };
-
     const openModal = async () => {
       const modal = await modalController.create({
         component: Modal,

@@ -233,7 +233,6 @@ import {
   IonSelect,
   IonSelectOption,
   IonInput,
-  popoverController,
   alertController,
   IonDatetime,
   IonPopover,
@@ -244,7 +243,6 @@ import {
   IonRange,
   IonRow,
   IonCol,
-  IonGrid,
   IonRadioGroup,
   IonRadio,
   IonCheckbox,
@@ -253,12 +251,10 @@ import {
 import { defineComponent, reactive, ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minValue, sameAs } from "@vuelidate/validators";
-import Popover from "@/components/Popover.vue";
 import Modal from "@/components/Modal.vue";
 import moment from "moment";
 import { currentAddressState, fixAddressState, phoneState } from "@/store";
 import { useRouter } from "vue-router";
-import { highlightTrailingWhitespace } from "jest-matcher-utils";
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -341,20 +337,6 @@ export default defineComponent({
 
     const vv = useVuelidate(rules, data_form);
 
-    const warnAlert = async (text: string) => {
-      const alert = await alertController.create({
-        cssClass: "error-alert",
-        header: "เกิดข้อผิดพลาด",
-        message: text,
-        buttons: ["ตกลง"],
-        mode: "ios",
-      });
-      await alert.present();
-
-      const { role } = await alert.onDidDismiss();
-      console.log("onDidDismiss resolved with role", role);
-    };
-
     const openModal = async () => {
       const modal = await modalController.create({
         component: Modal,
@@ -427,7 +409,7 @@ export default defineComponent({
   updated(){
     let province = this.currentAddress.split(" ")[3];
     console.log(province);
-    province !== "ขอนแก่น" && this.currentAddress !== "" ? this.c_current = true : this.c_current = false
+    province !== "ขอนแก่น" && this.currentAddress !== "" ? this.c_current = true : ''
   },
   methods: {
     formatDate1(event: any) {
@@ -437,7 +419,7 @@ export default defineComponent({
       if (label == "current-address") {
         let province = this.currentAddress.split(" ")[3];
         if (this.vv.currentAddress.$model !== "" && province !== "ขอนแก่น") {
-          this.errorAlert('กรุณากรอกจังหวัดตามความจริง', "ไปยังหน้ากรอกข้อมูล").then(() => {
+          this.errorAlert('อยู่นอกพื่นที่ให้บริการ', "ไปยังหน้ากรอกข้อมูล").then(() => {
             this.router.push("/current-address-dialog");
           })
         }
