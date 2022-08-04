@@ -100,7 +100,7 @@
           <ion-item color="tertiary">
             <ion-label>
               <ion-icon
-                v-if="vv.province.$model"
+                v-if="(vv.province.$model && !c_province)"
                 name="checkmark-circle-outline"
                 style="color: cornflowerblue"
               />
@@ -123,6 +123,7 @@
           <ion-item color="tertiary" lines="full">
             <ion-input
               type="text"
+              v-on:ion-focus="c_province = false"
               placeholder="เช่น ชลบุรี"
               v-model="vv.province.$model"
             ></ion-input>
@@ -274,7 +275,7 @@ export default defineComponent({
     const c_postcode = ref(false);
     const router = useRouter();
 
-    const { setFixAddress } = fixAddressState();
+    const { setFixAddress, fixAddress } = fixAddressState();
 
     const Address_form = reactive({
       address: "",
@@ -313,6 +314,20 @@ export default defineComponent({
         vv.value.postcode.$invalid
           ? (c_postcode.value = true)
           : (c_postcode.value = false);
+        setFixAddress.value(
+          vv.value.address.$model +
+            " " +
+            vv.value.subdistrict.$model +
+            " " +
+            vv.value.district.$model +
+            " " +
+            vv.value.province.$model +
+            " " +
+            vv.value.postcode.$model +
+            " " +
+            vv.value.optional.$model
+        );
+        router.back();
       } else {
         setFixAddress.value(
           vv.value.address.$model +
@@ -338,7 +353,26 @@ export default defineComponent({
       c_province,
       c_postcode,
       onSubmit,
+      fixAddress
     };
+  },
+    mounted(){
+     let fix = {
+      address: this.fixAddress.split(" ")[0],
+      subdistrict: this.fixAddress.split(" ")[1],
+      district: this.fixAddress.split(" ")[2],
+      province: this.fixAddress.split(" ")[3],
+      postcode: this.fixAddress.split(" ")[4],
+      optional: this.fixAddress.split(" ")[5],
+    }
+    fix.address ? this.vv.address.$model = fix.address : this.vv.address.$model = "";
+    fix.subdistrict ? this.vv.subdistrict.$model = fix.subdistrict : this.vv.subdistrict.$model = "";
+    fix.district ? this.vv.district.$model = fix.district : this.vv.district.$model = "";
+    fix.province ? this.vv.province.$model = fix.province : this.vv.province.$model = "";
+    fix.postcode ? this.vv.postcode.$model = fix.postcode : this.vv.postcode.$model = "";
+    fix.optional ? this.vv.optional.$model = fix.optional : this.vv.optional.$model = "";
+
+    this.vv.province.$model !== "ขอนแก่น" && this.vv.province.$model !== "" ? this.c_province = true : this.c_province = false;
   },
    methods: {
     async openPopover(ev: any, message: string) {

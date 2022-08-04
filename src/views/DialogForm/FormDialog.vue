@@ -129,7 +129,7 @@
 
           <ion-item color="tertiary" lines="full" button @click="errorToGo('fix-address')">
             <ion-label>
-              <ion-icon v-if="vv.fixAddress.$model" name="checkmark-circle-outline" style="color: cornflowerblue" />
+              <ion-icon v-if="vv.fixAddress.$model && !c_fix" name="checkmark-circle-outline" style="color: cornflowerblue" />
               <ion-icon v-else-if="c_fix" name="alert-circle-outline" style="color: red" />
               <ion-icon v-else name="ellipse-outline" style="color: cornflowerblue" />
               <b>&nbsp;ที่อยู่ตามบัตรประชาชน&nbsp;</b>
@@ -370,12 +370,12 @@ export default defineComponent({
           : (c_peopleIdBack.value = false);
         vv.value.job.$invalid ? (c_job.value = true) : (c_job.value = false);
         vv.value.age.$invalid ? (c_age.value = true) : (c_age.value = false);
-        vv.value.currentAddress.$invalid
+        vv.value.currentAddress.$invalid 
           ? (c_current.value = true)
-          : (c_current.value = false);
-        vv.value.fixAddress.$invalid
+          : vv.value.currentAddress.$model.split(" ")[3] === "ขอนแก่น"? (c_current.value = false) : (c_current.value = true);
+        vv.value.fixAddress.$invalid 
           ? (c_fix.value = true)
-          : (c_fix.value = false);
+          :  vv.value.fixAddress.$model.split(" ")[3] === "ขอนแก่น"? (c_fix.value = false) : (c_fix.value = true);
         vv.value.phoneState.$invalid
           ? (c_phone.value = true)
           : (c_phone.value = false);
@@ -403,12 +403,15 @@ export default defineComponent({
       router,
       onSubmit,
       currentAddress,
+      fixAddress,
       hideDialog
     };
   },
   updated(){
     let province = this.currentAddress.split(" ")[3];
-    console.log(province);
+    let fixProvince = this.fixAddress.split(" ")[3];
+
+    fixProvince !== "ขอนแก่น" && this.fixAddress !== "" ? this.c_fix = true : this.c_fix = false;
     province !== "ขอนแก่น" && this.currentAddress !== "" ? this.c_current = true : this.c_current = false
   },
   methods: {
@@ -431,7 +434,11 @@ export default defineComponent({
           this.router.push("/current-address-dialog");
         }
       } else if (label == "fix-address") {
-        if (this.c_fix && this.vv.fixAddress.$model === "") {
+        let fixProvince = this.fixAddress.split(" ")[3];
+        if (this.vv.fixAddress.$model !== "" && fixProvince !== "ขอนแก่น") {
+            this.router.push("/fix-address-dialog");
+        }
+        else if (this.c_fix && this.vv.fixAddress.$model === "") {
           this.errorAlert('กรุณากรอกที่อยู่ตามบัตรประชาชน', "ไปยังหน้ากรอกข้อมูล").then(() => {
             this.router.push("/fix-address-dialog");
           })
