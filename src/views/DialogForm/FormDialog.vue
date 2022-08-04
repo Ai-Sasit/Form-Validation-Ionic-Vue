@@ -409,7 +409,7 @@ export default defineComponent({
   updated(){
     let province = this.currentAddress.split(" ")[3];
     console.log(province);
-    province !== "ขอนแก่น" && this.currentAddress !== "" ? this.c_current = true : ''
+    province !== "ขอนแก่น" && this.currentAddress !== "" ? this.c_current = true : this.c_current = false
   },
   methods: {
     formatDate1(event: any) {

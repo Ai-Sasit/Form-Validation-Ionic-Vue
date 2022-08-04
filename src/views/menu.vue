@@ -12,7 +12,7 @@
           <ion-label>Form Validation [PopOver]</ion-label>
         </ion-item>
         <ion-item lines="full" button @click="() => router.push('/form-dialog')">
-          <ion-label>Form Validation [Dialog]</ion-label>
+          <ion-label>Form Validation [Dialog]<a style="color: red"> !! New !!</a></ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
